@@ -1,0 +1,372 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+    <div id="titleDiv">
+        <img src="img/hifilogoblk.png" width="220px">
+        <span id="title">HiFi40 Control Panel</span>
+    </div>
+
+    <div id="line_horizontal">
+      <hr class="new1">
+    </div>
+
+    <div id="setDiv">
+        <div>
+            <button class="button1" id="openclose_port">Open</button>
+        </div>
+        <span id="port_info">Status: Disconnected</span>
+    </div>
+
+    <div id="line_horizontal">
+      <hr class="new1">
+    </div>
+
+  <div id="titleDiv">
+    <span id="title">MICS</span>
+  </div>
+
+
+
+    <! -- MICS EQ Controls: bass, mid, treble -->
+    <table class="my-styled-table-outer">    
+      <tr>
+        <th>
+          <table class="table-sub-section">
+            <tr>
+              <th colspan="3"> <button class="buttononoff" id="mic_eq_onoff"> <img id="mic_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
+              </tr>
+            <tr>
+              <th colspan="3" style="height:45px"> </th>
+              </tr>            
+            
+            <tr>
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>BASS</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange1">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo1"></span>
+                    </th>
+                  </tr>
+                  </table>
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>MID</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange2">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo2"></span>
+                    </th>
+                  </tr>
+                </table>   
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>TREBLE</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange3">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo3"></span>
+                    </th>
+                  </tr>
+                </table>    
+            </td>   
+
+            </tr>
+
+          </table>
+
+          
+
+        </th>
+        <th>
+          <table class="table-sub-section">
+            <tr>
+              <th colspan="4"> <button class="buttononoff" id="mic_comp_onoff"> <img id="mic_comp_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/compressortext.png" alt="compressor" border="0" /></th>
+              </tr>
+
+            <tr>
+              <th colspan="3" style="height:17px"> </th>
+              </tr>     
+
+            <tr>
+              <th colspan="2" class="my-styled-cell-band-low" >Low band</th>
+              <th colspan="2" class="my-styled-cell-band-high" >High band</th>
+              </tr>    
+              
+              
+            <tr>
+              <td>
+                <table class="my-styled-table-inner-band-low">  
+                  <tr>  
+                    <th>thresh</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-30" max="0" value="0" step="3" class="slider" id="myRange_Mic_LOWBAND_threshold">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="myRange_Mic_LOWBAND_threshold_text_display_val"></span>
+                    </th>
+                  </tr>
+                  </table>
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner-band-low">  
+                  <tr>  
+                    <th>makeup gain</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="0" max="10" value="0" class="slider" id="myRange_Mic_LOWBAND_makeupGain">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="myRange_Mic_LOWBAND_makeupGain_text_display_val"></span>
+                    </th>
+                  </tr>
+                </table>   
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner-band-high">  
+                  <tr>  
+                    <th>thresh</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-30" max="0" value="0" step="3" class="slider" id="myRange_Mic_HIGHBAND_threshold">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="myRange_Mic_HIGHBAND_threshold_text_display_val"></span>
+                    </th>
+                  </tr>
+                </table>    
+            </td>   
+
+                          <td>
+                <table class="my-styled-table-inner-band-high">  
+                  <tr>  
+                    <th>makeup gain</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="0" max="10" value="0" class="slider" id="myRange_Mic_HIGHBAND_makeupGain">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="myRange_Mic_HIGHBAND_makeupGain_text_display_val"></span>
+                    </th>
+                  </tr>
+                </table>    
+            </td>  
+
+            </tr>              
+
+            
+          </table>
+        </th>
+
+
+        <th>
+          <table class="table-sub-section">
+              <th colspan="3" style="height:60px"> </th>
+              </tr>            
+            
+            <tr>
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>MIC OUT LEVEL</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-57" max="6" value="0" step="3" class="slider" id="myRangeMicOutputLevel">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="myRange_demo1MicOutputLevel_text_display_val"></span>
+                    </th>
+                  </tr>
+                  </table>
+              </td>
+
+
+            </tr>
+
+          </table>          
+        </th>
+      </tr>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+    <div id="titleDiv">
+      <span id="title">LINE</span>
+    </div> 
+
+   <! -- LINE INPUT EQ Controls: bass, mid, treble -->
+    <table class="my-styled-table-outer-line-input">    
+      <tr>
+        <th>
+          <table class="table-sub-section">
+            <tr>
+              <th colspan="3"> <button class="buttononoff" id="line_eq_onoff"> <img id="line_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
+              </tr>
+            <tr>
+              <th colspan="3" style="height:45px"> </th>
+              </tr>            
+            
+            <tr>
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>BASS</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange5">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo5"></span>
+                    </th>
+                  </tr>
+                  </table>
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>MID</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange6">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo6"></span>
+                    </th>
+                  </tr>
+                </table>   
+              </td>
+
+              <td>
+                <table class="my-styled-table-inner">  
+                  <tr>  
+                    <th>TREBLE</th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <div class="slidecontainer">
+                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange7">
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>  
+                    <th>
+                      <span id="demo7"></span>
+                    </th>
+                  </tr>
+                </table>    
+            </td>   
+
+            </tr>
+
+          </table>
+
+          
+
+        </th>
+
+      </tr>
+
+    </table>    
+
+
+
+    
+    <div id="outDiv">
+        <textarea id="term_window" readonly>Hellorld!</textarea>
+    </div>
+    <div id="inDiv">
+        <textarea id="term_input"></textarea>
+        <button id="send" disabled>Send</button>
+        <button id="clear" disabled>Clear</button>
+    </div>
+
+
+  <script src="js/scriptcpga.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
