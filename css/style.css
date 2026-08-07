@@ -1,0 +1,210 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 550px;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+
+#titleDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;    
+    background-color: black;
+}
+
+#title {
+    font-size: 30pt;
+    margin-left: 50px;
+}
+
+#outDiv {
+    width: 100%;
+    background-color: black;
+    color: #4CFF00;
+}
+
+#term_window {
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    color: #4CFF00;
+}
+
+#inDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#term_input {
+    width: 85%;
+    height: 20px;
+}
+
+#setDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+#port_info {
+    width: 500px;
+}
+
+#line_horizontal {
+    width:100%;
+    text-align:left;
+}
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+    accent-color: darkgray; /* Color of the slider */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: slider-vertical;  /* Override default CSS styles */
+    /*appearance: none;*/
+    width: 100%; /* Full-width */
+    height: 200px; /* Specified height */
+    border-radius: 10%; /* No border radius */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: slider-vertical; /* Override default look */
+    /*appearance: none;*/
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background-color: black; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background-color: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+  .button1 {
+  background-color: #00728D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button1:hover {background-color: #0092B5}
+
+.button2 {
+  background-color: #00728D; /* Green */
+  border: 2px solid #003E4C;
+  color: white;
+  padding: 5px 5px;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button2:hover {background-color: #0092B5}
+
+.button2:disabled {
+  background-color: #606060;
+  border: 2px solid #103b44;
+  color: #484848;
+}
+
+.buttononoff {
+  background-color: transparent;
+  border-style: none;
+}
+
+.buttononoff:hover {}
+
+hr.new1 {
+  border: 5px solid #00728D;
+  border-radius: 2px;
+}
+
+.my-styled-table {
+  /* CSS properties to style the table */
+  border: 1px solid #00728D;
+  width: 100%;
+}
+
+th, td {
+  /* CSS properties to style the table */
+  border: 1px solid #000000;
+  vertical-align: middle;
+}
+
+.my-styled-table-outer {
+  /* CSS properties to style the table */
+  border: 5px solid #000000;
+  width: 100%;
+}
+
+.my-styled-table-outer-line-input {
+  /* CSS properties to style the table */
+  border: 5px solid #000000;
+  width: 435px;
+}
+
+.my-styled-table-inner {
+  /* CSS properties to style the table */
+  border: 5px solid #3b3b3b;
+}
+
+.my-styled-table-inner-band-low {
+  /* CSS properties to style the table */
+  border: 5px solid #1a521f;
+}
+
+.my-styled-table-inner-band-high {
+  /* CSS properties to style the table */
+  border: 5px solid #501a52;
+}
+
+.my-styled-cell-band-low {
+  /* CSS properties to style the table */
+  border: 2px solid #000000;
+  background-color: #1a521f;
+}
+
+.my-styled-cell-band-high {
+  /* CSS properties to style the table */
+  border: 2px solid #000000;
+  background-color: #501a52;
+}
+
+.table-sub-section {
+  /* CSS properties to style the table */
+  border: 5px solid #00728D;
+  width: 100%;
+}
