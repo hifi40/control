@@ -29,6 +29,8 @@
       <hr class="new1">
     </div>
 
+  <div id="settingsSections" class="awaiting-connection">
+
   <div id="titleDiv">
     <span id="title">MICS</span>
   </div>
@@ -41,7 +43,7 @@
         <th>
           <table class="table-sub-section">
             <tr>
-              <th colspan="3"> <button class="buttononoff" id="mic_eq_onoff"> <img id="mic_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
+              <th colspan="3"> <button class="buttononoff live-control" id="mic_eq_onoff" disabled> <img id="mic_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
               </tr>
             <tr>
               <th colspan="3" style="height:45px"> </th>
@@ -56,7 +58,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange1">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange1" disabled>
                       </div>
                     </th>
                   </tr>
@@ -76,7 +78,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange2">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange2" disabled>
                       </div>
                     </th>
                   </tr>
@@ -96,7 +98,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange3">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange3" disabled>
                       </div>
                     </th>
                   </tr>
@@ -118,7 +120,7 @@
         <th>
           <table class="table-sub-section">
             <tr>
-              <th colspan="4"> <button class="buttononoff" id="mic_comp_onoff"> <img id="mic_comp_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/compressortext.png" alt="compressor" border="0" /></th>
+              <th colspan="4"> <button class="buttononoff live-control" id="mic_comp_onoff" disabled> <img id="mic_comp_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/compressortext.png" alt="compressor" border="0" /></th>
               </tr>
 
             <tr>
@@ -140,7 +142,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-30" max="0" value="0" step="3" class="slider" id="myRange_Mic_LOWBAND_threshold">
+                      <input type="range" min="-30" max="0" value="0" step="3" class="slider live-control" id="myRange_Mic_LOWBAND_threshold" disabled>
                       </div>
                     </th>
                   </tr>
@@ -160,7 +162,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="0" max="10" value="0" class="slider" id="myRange_Mic_LOWBAND_makeupGain">
+                      <input type="range" min="0" max="10" value="0" class="slider live-control" id="myRange_Mic_LOWBAND_makeupGain" disabled>
                       </div>
                     </th>
                   </tr>
@@ -180,7 +182,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-30" max="0" value="0" step="3" class="slider" id="myRange_Mic_HIGHBAND_threshold">
+                      <input type="range" min="-30" max="0" value="0" step="3" class="slider live-control" id="myRange_Mic_HIGHBAND_threshold" disabled>
                       </div>
                     </th>
                   </tr>
@@ -200,7 +202,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="0" max="10" value="0" class="slider" id="myRange_Mic_HIGHBAND_makeupGain">
+                      <input type="range" min="0" max="10" value="0" class="slider live-control" id="myRange_Mic_HIGHBAND_makeupGain" disabled>
                       </div>
                     </th>
                   </tr>
@@ -233,7 +235,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-57" max="6" value="0" step="3" class="slider" id="myRangeMicOutputLevel">
+                      <input type="range" min="-57" max="6" value="0" step="3" class="slider live-control" id="myRangeMicOutputLevel" disabled>
                       </div>
                     </th>
                   </tr>
@@ -273,7 +275,7 @@
         <th>
           <table class="table-sub-section">
             <tr>
-              <th colspan="3"> <button class="buttononoff" id="line_eq_onoff"> <img id="line_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
+              <th colspan="3"> <button class="buttononoff live-control" id="line_eq_onoff" disabled> <img id="line_eq_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <img src="img/eqtext.png" alt="equalizer" border="0" /></th>
               </tr>
             <tr>
               <th colspan="3" style="height:45px"> </th>
@@ -288,7 +290,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange5">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange5" disabled>
                       </div>
                     </th>
                   </tr>
@@ -308,7 +310,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange6">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange6" disabled>
                       </div>
                     </th>
                   </tr>
@@ -328,7 +330,7 @@
                   <tr>  
                     <th>
                       <div class="slidecontainer">
-                      <input type="range" min="-10" max="10" value="0" class="slider" id="myRange7">
+                      <input type="range" min="-10" max="10" value="0" class="slider live-control" id="myRange7" disabled>
                       </div>
                     </th>
                   </tr>
@@ -344,17 +346,58 @@
 
           </table>
 
-          
+
 
         </th>
 
       </tr>
 
-    </table>    
+    </table>
 
 
 
-    
+    <div id="titleDiv">
+      <span id="title">GENERAL SETTINGS</span>
+    </div>
+
+   <! -- General settings: auto shutdown timer on/off and duration -->
+    <table class="my-styled-table-outer-line-input">
+      <tr>
+        <th>
+          <table class="table-sub-section">
+            <tr>
+              <th colspan="4"> <button class="buttononoff live-control" id="auto_shutdown_onoff" disabled> <img id="auto_shutdown_onoff_img" src="img/switchoff.png" alt="buttononoff" border="0" /> </button> <span class="section-label-text">AUTO SHUTDOWN TIMER</span></th>
+              </tr>
+            <tr>
+              <th colspan="4" style="height:25px"> </th>
+              </tr>
+
+            <tr>
+              <td style="text-align:center; padding:8px">
+                <button class="button2 live-control timer-select-button" id="auto_shutdown_timer_30" disabled>30 MIN</button>
+              </td>
+              <td style="text-align:center; padding:8px">
+                <button class="button2 live-control timer-select-button" id="auto_shutdown_timer_60" disabled>60 MIN</button>
+              </td>
+              <td style="text-align:center; padding:8px">
+                <button class="button2 live-control timer-select-button" id="auto_shutdown_timer_90" disabled>90 MIN</button>
+              </td>
+              <td style="text-align:center; padding:8px">
+                <button class="button2 live-control timer-select-button" id="auto_shutdown_timer_120" disabled>120 MIN</button>
+              </td>
+            </tr>
+
+          </table>
+
+        </th>
+
+      </tr>
+
+    </table>
+
+  </div>
+
+
     <div id="outDiv">
         <textarea id="term_window" readonly>Hellorld!</textarea>
     </div>

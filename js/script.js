@@ -7,9 +7,12 @@ let reader; // current port reader object so we can call .cancel() on it to inte
 let micEqOnOffStat = false; // tracks mic eq on and off
 let micCompOnOffStat = false;
 let lineEqOnOffStat  = false;
+let autoShutdownOnOffStat = false; // tracks auto shutdown timer on and off
+let autoShutdownTimerMins = 60; // last selected (or current) auto shutdown duration, restored when switching back on
 
 // Constants for the HIFI40 commands
 const HIFI40_WRITE_REGISTER_COMMAND = "96"; // command to write a register
+const HIFI40_TIMEOUT_LENGTH_CMD = "19"; // command to write the auto shutdown timer length setting
 
 const HIFI40_WRITE_COMP_POINT_GRAPH_ARRAY_MH_CMD = "92"; // command to write compression point graph array mic, high band
 const HIFI40_WRITE_COMP_POINT_GRAPH_ARRAY_ML_CMD = "93"; // command to write compression point graph array mic, low band
@@ -39,7 +42,22 @@ window.onload = function () {
       .addEventListener("click", onoff_mic_comp);      
     document
       .getElementById("line_eq_onoff")
-      .addEventListener("click", onoff_line_eq);        
+      .addEventListener("click", onoff_line_eq);
+    document
+      .getElementById("auto_shutdown_onoff")
+      .addEventListener("click", onoff_auto_shutdown);
+    document
+      .getElementById("auto_shutdown_timer_30")
+      .addEventListener("click", function () { setAutoShutdownTimer(30); });
+    document
+      .getElementById("auto_shutdown_timer_60")
+      .addEventListener("click", function () { setAutoShutdownTimer(60); });
+    document
+      .getElementById("auto_shutdown_timer_90")
+      .addEventListener("click", function () { setAutoShutdownTimer(90); });
+    document
+      .getElementById("auto_shutdown_timer_120")
+      .addEventListener("click", function () { setAutoShutdownTimer(120); });
     document
       .getElementById("term_input")
       .addEventListener("keydown", detectEnter);
@@ -56,6 +74,15 @@ window.onload = function () {
     if (preFill != null) {
       // If there's a prefill string then pop it into the term_input textarea
       document.getElementById("term_input").value = preFill;
+    }
+
+    // The raw terminal window (outDiv/inDiv) is a dev/debug tool, not something meant for
+    // customers to see on the live site. It's hidden by default and only shown when
+    // "?debug=1" is on the URL, so the same file can be used here in dev and copied as-is
+    // into the live control repo without needing to strip it out each time.
+    if (params.debug != "1") {
+      document.getElementById("outDiv").style.display = "none";
+      document.getElementById("inDiv").style.display = "none";
     }
   } else {
     // The Web Serial API is not supported.
@@ -109,8 +136,10 @@ async function openClose() {
         //document.getElementById("change").disabled = false;
         //document.getElementById("send1").disabled = false;
         //document.getElementById("clear1").disabled = false;
-        // Enable button2 class elements
-        enableElementsByClass("button2", true);
+        // Note: live-control elements (EQ/comp/timer sliders and switches) stay disabled here.
+        // They're only enabled once the device's current settings are actually received and
+        // displayed (see the "S" branch in parseMessage), so the UI never shows/allows editing
+        // of stale defaults before a live connection is confirmed.
 
         // NOT SUPPORTED BY ALL ENVIRONMENTS
         // Get port info and display it to the user in the port_info span
@@ -175,8 +204,11 @@ async function openClose() {
         document.getElementById("send").disabled = true;
         //document.getElementById("change").disabled = true;
         document.getElementById("port_info").innerText = "Status: Disconnected";
-        // Disable button2 class elements
-        enableElementsByClass("button2", false);
+        // Grey out and disable all live-control elements again now that we're disconnected,
+        // so the last-known settings aren't left editable/misleading after the connection drops
+        enableElementsByClass("live-control", false);
+        // Tone the whole MICS/LINE/GENERAL SETTINGS area back down too
+        document.getElementById("settingsSections").classList.add("awaiting-connection");
 
         console.log("port closed");
 
@@ -789,6 +821,61 @@ function onoff_line_eq() {
  }
 }
 
+// Convert a timer duration in minutes (0, 30, 60, 90, 120) to the two-digit
+// command argument expected by the HIFI40_TIMEOUT_LENGTH_CMD ("19") command
+function timerMinsToCommandVal(mins) {
+  if (mins == 30) return "01";
+  if (mins == 60) return "02";
+  if (mins == 90) return "03";
+  if (mins == 120) return "04";
+  return "00"; // 0 = off
+}
+
+// Convert a raw settings array value (0-4) back into minutes (0, 30, 60, 90, 120)
+function commandValToTimerMins(commandVal) {
+  let val = parseInt(commandVal);
+  if (val == 1) return 30;
+  if (val == 2) return 60;
+  if (val == 3) return 90;
+  if (val == 4) return 120;
+  return 0; // off
+}
+
+// Update the on/off switch image and highlight the active duration button
+// to reflect the current autoShutdownOnOffStat / autoShutdownTimerMins state
+function updateAutoShutdownButtonsUI() {
+  document.getElementById("auto_shutdown_onoff_img").src =
+    autoShutdownOnOffStat ? "img/switchon.png" : "img/switchoff.png";
+
+  let timerButtons = document.getElementsByClassName("timer-select-button");
+  for (let i = 0; i < timerButtons.length; i++) {
+    timerButtons[i].classList.remove("selected");
+  }
+  if (autoShutdownOnOffStat) {
+    let activeButton = document.getElementById("auto_shutdown_timer_" + autoShutdownTimerMins);
+    if (activeButton) activeButton.classList.add("selected");
+  }
+}
+
+// Set the auto shutdown timer to the given duration in minutes (0 = off),
+// update local state/UI, and send the command to the device
+function setAutoShutdownTimer(mins) {
+  autoShutdownOnOffStat = (mins != 0);
+  if (mins != 0) {
+    autoShutdownTimerMins = mins; // remember it so the on/off switch can restore it later
+  }
+  updateAutoShutdownButtonsUI();
+  sendString1("<" + HIFI40_TIMEOUT_LENGTH_CMD + timerMinsToCommandVal(mins) + ">");
+}
+
+function onoff_auto_shutdown() {
+  if (autoShutdownOnOffStat) {
+    setAutoShutdownTimer(0); // turn off
+  } else {
+    setAutoShutdownTimer(autoShutdownTimerMins); // turn back on at the last selected duration
+  }
+}
+
 function enableElementsByClass(className, enable) {
   var elements = document.getElementsByClassName(className); // 1. Get elements by class name
   for (var i = 0; i < elements.length; i++) { // 2. Iterate
@@ -967,6 +1054,12 @@ function parseMessage(inString)
     console.log("storing in local settingsArray")
     settingsArray = valueArray;
     updateDisplayFromSettingsArray();
+    // Now that the device's live settings are actually displayed, it's safe to let the
+    // user interact with them - enable/un-grey the EQ/comp/timer switches and sliders
+    enableElementsByClass("live-control", true);
+    // Bring the whole MICS/LINE/GENERAL SETTINGS area (titles, box borders, everything) up
+    // to full brightness now that it's showing real, live settings
+    document.getElementById("settingsSections").classList.remove("awaiting-connection");
   }
 
 }
@@ -1056,5 +1149,13 @@ function updateDisplayFromSettingsArray()
    // mic output level fader
   sliderMicOUTLVL.value = CommandValToFaderVal_MICOUTLEVEL(settingsArray[30]);
   sliderMicOUTLVLoutput.innerHTML = sliderMicOUTLVL.value;
+
+  // auto shutdown timer (settings array index 20 = HIFI40_TIMEOUT_LENGTH_MEM_ADD (19) + 1 for the leading "S")
+  let autoShutdownMinsFromDevice = commandValToTimerMins(settingsArray[20]);
+  autoShutdownOnOffStat = (autoShutdownMinsFromDevice != 0);
+  if (autoShutdownMinsFromDevice != 0) {
+    autoShutdownTimerMins = autoShutdownMinsFromDevice;
+  }
+  updateAutoShutdownButtonsUI();
 
 }

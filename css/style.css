@@ -65,6 +65,16 @@ body {
     text-align:left;
 }
 
+#settingsSections {
+    transition: opacity 0.2s ease;
+}
+
+/* Tone down the whole MICS/LINE/GENERAL SETTINGS area - titles, box borders, and all -
+   until a live connection is established and current settings are actually displayed */
+#settingsSections.awaiting-connection {
+    opacity: 0.35;
+}
+
 .slidecontainer {
     width: 100%; /* Width of the outside container */
     accent-color: darkgray; /* Color of the slider */
@@ -88,7 +98,17 @@ body {
   .slider:hover {
     opacity: 1; /* Fully shown on mouse-over */
   }
-  
+
+  /* Greyed out until a live connection has been established and current settings received */
+  .slider:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .slider:disabled:hover {
+    opacity: 0.25; /* don't let the hover effect override the disabled look */
+  }
+
   /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
   .slider::-webkit-slider-thumb {
     -webkit-appearance: slider-vertical; /* Override default look */
@@ -146,6 +166,31 @@ body {
 }
 
 .buttononoff:hover {}
+
+/* Greyed out until a live connection has been established and current settings received */
+.buttononoff:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.section-label-text {
+  color: #027A9A;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.timer-select-button.selected {
+  background-color: #04AA6D;
+  border: 2px solid #ffffff;
+}
+
+.timer-select-button.selected:hover {
+  background-color: #05c47e;
+}
 
 hr.new1 {
   border: 5px solid #00728D;
