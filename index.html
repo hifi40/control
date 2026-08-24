@@ -3,8 +3,14 @@
 
 <head>
   <meta charset="utf-8">
+  <!-- GitHub Pages doesn't let us set real Cache-Control HTTP headers, so this is a
+       best-effort nudge to browsers not to cache this page itself; the ?v= query
+       strings on the css/js below are what actually guarantee fresh assets. -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title></title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20260823">
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -408,8 +414,11 @@
     </div>
 
 
-  <script src="js/scriptcpga.js"></script>
-  <script src="js/script.js"></script>
+  <!-- Bump the ?v= query string on css/style.css above and both scripts below on every
+       deploy - GitHub Pages doesn't let us set Cache-Control headers, so this is what
+       forces browsers to fetch the new files instead of serving a stale cached copy. -->
+  <script src="js/scriptcpga.js?v=20260823"></script>
+  <script src="js/script.js?v=20260823"></script>
 </body>
 
 </html>
